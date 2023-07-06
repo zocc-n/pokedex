@@ -31,12 +31,13 @@ function fetchPokemon() {
         .then(res => setData(res))
         .catch(res => {
           setError(true)
+          setData(null)
         })
 }
 
   return (
     <>
-      {data && <Pokedex data={data} error={error} />}
+      {(data || error) && <Pokedex data={data} error={error} />}
       <form onSubmit={handleSubmit}>
             <input type="text" value={value} onChange={handleChange} />
             <button className="search-btn">Search</button>
